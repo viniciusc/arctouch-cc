@@ -1,4 +1,4 @@
-package com.arctouch.codechallenge.home;
+package com.arctouch.codechallenge.home.view;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -19,10 +19,12 @@ import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
-    private List<Movie> movies;
+    private static List<Movie> movies;
+    private MovieListClickListener listener;
 
-    public HomeAdapter(List<Movie> movies) {
+    public HomeAdapter(List<Movie> movies, MovieListClickListener listener) {
         this.movies = movies;
+        this.listener = listener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -33,13 +35,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         private final TextView genresTextView;
         private final TextView releaseDateTextView;
         private final ImageView posterImageView;
+        private final MovieListClickListener itemClickListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, MovieListClickListener listener) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             genresTextView = itemView.findViewById(R.id.genresTextView);
             releaseDateTextView = itemView.findViewById(R.id.releaseDateTextView);
             posterImageView = itemView.findViewById(R.id.posterImageView);
+            itemClickListener = listener;
+            itemView.setOnClickListener(view -> itemClickListener.onMovieClick(getAdapterPosition()));
         }
 
         public void bind(Movie movie) {
@@ -61,7 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, listener);
     }
 
     @Override
