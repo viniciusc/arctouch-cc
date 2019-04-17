@@ -1,0 +1,16 @@
+/build
+*.li
+app/*.apk
+.gradle/*
+.idea/*
+.idea/libraries/*
+app/app.iml
+app/build/*
+local.properties
+.DS_Store
+build/*
+*.iml
+captures/*
+*.li
+projectFilesBackup/.idea/workspace.xml
+*/build/*

@@ -13,15 +13,16 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".splash.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:name=".home.view.HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".details.view.DetailsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
 
-        <activity android:name=".home.HomeActivity" />
 
     </application>
 
